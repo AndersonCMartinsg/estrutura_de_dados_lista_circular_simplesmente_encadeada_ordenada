@@ -6,10 +6,10 @@ class Node:
     """Representa uma página (curso/notícia) no histórico."""
 
     def __init__(self, id_acesso, titulo, tipo):
-        self.id_acesso = id_acesso  # Critério de ordenação
-        self.titulo = titulo  # Ex: "Curso de Python"
+        self.id_acesso = id_acesso  
+        self.titulo = titulo 
         self.tipo = tipo  # "Curso" ou "Notícia"
-        self.next = None  # Ponteiro para o próximo nó
+        self.next = None  
 
     def __str__(self):
         return f"[{self.id_acesso}] {self.tipo}: {self.titulo}"
@@ -23,7 +23,7 @@ class ListaCircularOrdenada:
         """Insere um novo acesso na lista mantendo-a ordenada."""
         novo_no = Node(id_acesso, titulo, tipo)
 
-        # Caso 1: A lista está vazia
+        
         if not self.head:
             self.head = novo_no
             novo_no.next = self.head
@@ -32,7 +32,7 @@ class ListaCircularOrdenada:
         atual = self.head
         anterior = None
 
-        # Caso 2: O novo nó deve ser inserido ANTES do Head
+        
         if novo_no.id_acesso < self.head.id_acesso:
             ultimo = self.head
             while ultimo.next != self.head:
@@ -43,7 +43,7 @@ class ListaCircularOrdenada:
             self.head = novo_no
             return
 
-        # Caso 3: Inserção no meio ou no fim
+        
         while True:
             anterior = atual
             atual = atual.next
@@ -77,7 +77,7 @@ class ListaCircularOrdenada:
 # =====================================================================
 # 2. CÓDIGO DE EXECUÇÃO (Onde a mágica acontece na prática)
 # =====================================================================
-# Este bloco 'if' garante que o teste só rode se você executar este arquivo diretamente
+
 if __name__ == "__main__":
     # Criando o histórico do site de programação
     meu_historico = ListaCircularOrdenada()
@@ -88,5 +88,5 @@ if __name__ == "__main__":
     meu_historico.inserir(4, "Notícia: O mercado de tecnologia em 2026", "Notícia")
     meu_historico.inserir(2, "Curso de Lógica de Programação", "Curso")
 
-    # Exibindo o histórico dando 2 voltas completas
+    
     meu_historico.exibir_historico(voltas=2)
